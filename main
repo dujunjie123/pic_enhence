@@ -1,0 +1,27 @@
+import sys
+sys.path.append("D:\python\Lib\site-packages")
+import matplotlib.pyplot as plt # plt 用于显示图片
+import matplotlib.image as mpimg # mpimg 用于读取图片
+import PIL
+import numpy as np
+
+
+pic=PIL.Image.open('D:\python\pic2.jpg')
+#pic.show()
+
+L_pic=pic.convert('L')
+L_pic.save("D:\python\L_pic.png")
+matrix = np.asarray(L_pic)
+
+a,b=matrix.shape
+new_pic=np.zeros((a,b))
+
+
+
+for i in range(452):
+    for j in range(390):
+        if int(matrix[i,j])>200:
+            new_pic[i,j]=255
+
+img=PIL.Image.fromarray(new_pic)
+img.show()
